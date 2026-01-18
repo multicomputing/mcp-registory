@@ -63,32 +63,82 @@
     {
       "server": {
         "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-        "name": "com.atlassian/atlassian-mcp-server",
-        "description": "Atlassian Rovo MCP Server - Enables secure, permission-aware access to Atlassian Cloud products.",
-        "title": "Atlassian Rovo MCP Server",
-        "version": "1.1.0",
-        "remotes": [
+        "name": "com.microsoft/markitdown",
+        "description": "MarkItDown MCP server: convert documents (PDF, Office, images, HTML, etc.) to Markdown for LLM workflows.",
+        "title": "MarkItDown MCP Server",
+        "repository": {
+          "url": "https://github.com/microsoft/markitdown",
+          "source": "github",
+          "subfolder": "packages/markitdown-mcp"
+        },
+        "version": "0.0.1a4",
+        "websiteUrl": "https://github.com/microsoft/markitdown",
+        "packages": [
           {
-            "type": "streamable-http",
-            "url": "https://mcp.atlassian.com/v1/mcp"
-          },
-          {
-            "type": "sse",
-            "url": "https://mcp.atlassian.com/v1/sse"
+            "registryType": "pypi",
+            "registryBaseUrl": "https://pypi.org",
+            "identifier": "markitdown-mcp",
+            "version": "0.0.1a4",
+            "transport": {
+              "type": "stdio"
+            }
           }
         ]
       },
       "_meta": {
         "io.modelcontextprotocol.registry/official": {
           "status": "active",
-          "publishedAt": "2026-01-09T17:53:25.104949Z",
-          "updatedAt": "2026-01-09T17:53:25.104949Z",
+          "publishedAt": "2026-01-19T00:00:00.000000Z",
+          "updatedAt": "2026-01-19T00:00:00.000000Z",
           "isLatest": true
+        },
+        "io.modelcontextprotocol.registry/publisher-provided": {
+          "documentation": "https://pypi.org/project/markitdown-mcp/",
+          "keywords": [
+            "markdown",
+            "documents",
+            "conversion",
+            "pypi",
+            "python",
+            "stdio",
+            "http"
+          ]
+        }
+      }
+    },
+    {
+      "server": {
+        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+        "name": "local/developer-mcp-template",
+        "description": "Developer template entry for running your own local MCP server (STDIO or localhost HTTP). Edit the command/args or URL to match your project.",
+        "title": "Local MCP Dev (Template)",
+        "version": "0.0.0"
+      },
+      "_meta": {
+        "io.modelcontextprotocol.registry/publisher-provided": {
+          "note": "This is a template. It will fail unless you run a local MCP server that matches the chosen transport (STDIO or HTTP) and endpoint.",
+          "examples": [
+            {
+              "name": "STDIO (Node.js example)",
+              "description": "Use STDIO for local development; point to your built entrypoint.",
+              "config": "{\n  \"mcpServers\": {\n    \"my-local-mcp\": {\n      \"command\": \"node\",\n      \"args\": [\n        \"${workspaceFolder}/dist/index.js\"\n      ]\n    }\n  }\n}"
+            },
+            {
+              "name": "STDIO (Python example)",
+              "description": "Point to your module/entry script.",
+              "config": "{\n  \"mcpServers\": {\n    \"my-local-mcp\": {\n      \"command\": \"python\",\n      \"args\": [\n        \"-m\",\n        \"my_mcp_server\"\n      ]\n    }\n  }\n}"
+            },
+            {
+              "name": "Local port (HTTP)",
+              "description": "If your server runs as HTTP, connect by URL.",
+              "config": "{\n  \"mcpServers\": {\n    \"my-local-mcp\": {\n      \"type\": \"http\",\n      \"url\": \"http://127.0.0.1:3000/mcp\"\n    }\n  }\n}"
+            }
+          ]
         }
       }
     }
   ],
   "metadata": {
-    "count": 3
+    "count": 4
   }
 }
