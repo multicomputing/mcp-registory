@@ -1,144 +1,228 @@
-{
-  "servers": [
-    {
-      "server": {
-        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-        "name": "com.microsoft/playwright",
-        "description": "A Model Context Protocol (MCP) server that provides browser automation capabilities using Playwright. This server enables LLMs to interact with web pages through structured accessibility snapshots.",
-        "title": "Playwright MCP Server",
-        "repository": {
-          "url": "https://github.com/microsoft/playwright-mcp",
-          "source": "github"
-        },
-        "version": "0.0.56",
-        "websiteUrl": "https://playwright.dev/",
-        "packages": [
-          {
-            "registryType": "npx",
-            "identifier": "@playwright/mcp@latest",
-            "version": "latest",
-            "transport": {
-              "type": "stdio"
-            }
-          }
-        ]
-      },
-      "_meta": {
-        "io.modelcontextprotocol.registry/official": {
-          "status": "active",
-          "publishedAt": "2026-01-17T00:00:00.000000Z",
-          "updatedAt": "2026-01-17T00:00:00.000000Z",
-          "isLatest": true
-        }
-      }
-    },
-    {
-      "server": {
-        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
-        "name": "com.microsoft/microsoft-learn-mcp",
-        "description": "Official Microsoft Learn MCP Server – real-time, trusted docs & code samples for AI and LLMs.",
-        "title": "Microsoft Learn MCP",
-        "repository": {
-          "url": "https://github.com/MicrosoftDocs/mcp",
-          "source": "github"
-        },
-        "version": "1.0.0",
-        "websiteUrl": "https://github.com/MicrosoftDocs/mcp",
-        "remotes": [
-          {
-            "type": "streamable-http",
-            "url": "https://learn.microsoft.com/api/mcp"
-          }
-        ]
-      },
-      "_meta": {
-        "io.modelcontextprotocol.registry/official": {
-          "status": "active",
-          "publishedAt": "2025-11-21T06:16:59.721831Z",
-          "updatedAt": "2025-11-21T06:16:59.721831Z",
-          "isLatest": true
-        }
-      }
-    },
-    {
-      "server": {
-        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-        "name": "com.microsoft/markitdown",
-        "description": "MarkItDown MCP server: convert documents (PDF, Office, images, HTML, etc.) to Markdown for LLM workflows.",
-        "title": "MarkItDown MCP Server",
-        "repository": {
-          "url": "https://github.com/microsoft/markitdown",
-          "source": "github",
-          "subfolder": "packages/markitdown-mcp"
-        },
-        "version": "0.0.1a4",
-        "websiteUrl": "https://github.com/microsoft/markitdown",
-        "packages": [
-          {
-            "registryType": "pypi",
-            "registryBaseUrl": "https://pypi.org",
-            "identifier": "markitdown-mcp",
-            "version": "0.0.1a4",
-            "transport": {
-              "type": "stdio"
-            }
-          }
-        ]
-      },
-      "_meta": {
-        "io.modelcontextprotocol.registry/official": {
-          "status": "active",
-          "publishedAt": "2026-01-19T00:00:00.000000Z",
-          "updatedAt": "2026-01-19T00:00:00.000000Z",
-          "isLatest": true
-        },
-        "io.modelcontextprotocol.registry/publisher-provided": {
-          "documentation": "https://pypi.org/project/markitdown-mcp/",
-          "keywords": [
-            "markdown",
-            "documents",
-            "conversion",
-            "pypi",
-            "python",
-            "stdio",
-            "http"
-          ]
-        }
-      }
-    },
-    {
-      "server": {
-        "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-        "name": "local/developer-mcp-template",
-        "description": "Developer template entry for running your own local MCP server (STDIO or localhost HTTP). Edit the command/args or URL to match your project.",
-        "title": "Local MCP Dev (Template)",
-        "version": "0.0.0"
-      },
-      "_meta": {
-        "io.modelcontextprotocol.registry/publisher-provided": {
-          "note": "This is a template. It will fail unless you run a local MCP server that matches the chosen transport (STDIO or HTTP) and endpoint.",
-          "examples": [
+  {
+    "servers": [
+      {
+        "server": {
+          "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+          "name": "com.atlassian/atlassian-mcp-server",
+          "description": "Atlassian Rovo MCP Server",
+          "repository": {
+            "url": "https://github.com/atlassian/atlassian-mcp-server",
+            "source": "github"
+          },
+          "version": "1.1.1",
+          "remotes": [
             {
-              "name": "STDIO (Node.js example)",
-              "description": "Use STDIO for local development; point to your built entrypoint.",
-              "config": "{\n  \"mcpServers\": {\n    \"my-local-mcp\": {\n      \"command\": \"node\",\n      \"args\": [\n        \"${workspaceFolder}/dist/index.js\"\n      ]\n    }\n  }\n}"
+              "type": "streamable-http",
+              "url": "https://mcp.atlassian.com/v1/mcp"
             },
             {
-              "name": "STDIO (Python example)",
-              "description": "Point to your module/entry script.",
-              "config": "{\n  \"mcpServers\": {\n    \"my-local-mcp\": {\n      \"command\": \"python\",\n      \"args\": [\n        \"-m\",\n        \"my_mcp_server\"\n      ]\n    }\n  }\n}"
-            },
-            {
-              "name": "Local port (HTTP)",
-              "description": "If your server runs as HTTP, connect by URL.",
-              "config": "{\n  \"mcpServers\": {\n    \"my-local-mcp\": {\n      \"type\": \"http\",\n      \"url\": \"http://127.0.0.1:3000/mcp\"\n    }\n  }\n}"
+              "type": "sse",
+              "url": "https://mcp.atlassian.com/v1/sse"
             }
           ]
+        },
+        "_meta": {
+          "io.modelcontextprotocol.registry/official": {
+            "status": "active",
+            "publishedAt": "2026-01-27T21:23:24.910629Z",
+            "updatedAt": "2026-01-27T21:23:24.910629Z",
+            "isLatest": true
+          }
+        }
+      },
+      {
+        "server": {
+          "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
+          "name": "com.microsoft/microsoft-learn-mcp",
+          "description": "Official Microsoft Learn MCP Server – real-time, trusted docs & code samples for AI and LLMs.",
+          "title": "Microsoft Learn MCP",
+          "repository": {
+            "url": "https://github.com/MicrosoftDocs/mcp",
+            "source": "github"
+          },
+          "version": "1.0.0",
+          "websiteUrl": "https://github.com/MicrosoftDocs/mcp",
+          "remotes": [
+            {
+              "type": "streamable-http",
+              "url": "https://learn.microsoft.com/api/mcp"
+            }
+          ]
+        },
+        "_meta": {
+          "io.modelcontextprotocol.registry/official": {
+            "status": "active",
+            "publishedAt": "2025-11-21T06:16:59.721831Z",
+            "updatedAt": "2025-11-21T06:16:59.721831Z",
+            "isLatest": true
+          }
+        }
+      },
+      {
+        "server": {
+          "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+          "name": "com.microsoft/nuget",
+          "description": "A Model Context Protocol (MCP) server for NuGet.",
+          "version": "1.1.29",
+          "packages": [
+            {
+              "registryType": "nuget",
+              "registryBaseUrl": "https://api.nuget.org/v3/index.json",
+              "identifier": "NuGet.Mcp.Server",
+              "version": "1.1.29",
+              "transport": {
+                "type": "stdio"
+              }
+            }
+          ]
+        },
+        "_meta": {
+          "io.modelcontextprotocol.registry/official": {
+            "status": "active",
+            "publishedAt": "2026-01-23T22:34:10.229563Z",
+            "updatedAt": "2026-01-23T22:34:10.229563Z",
+            "isLatest": true
+          }
+        }
+      },
+      {
+        "server": {
+          "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+          "name": "com.microsoft/playwright",
+          "description": "A Model Context Protocol (MCP) server that provides browser automation capabilities using Playwright. This server enables LLMs to interact with web pages through structured accessibility snapshots.",
+          "title": "Playwright MCP Server",
+          "repository": {
+            "url": "https://github.com/microsoft/playwright-mcp",
+            "source": "github"
+          },
+          "version": "0.0.56",
+          "websiteUrl": "https://playwright.dev/",
+          "packages": [
+            {
+              "registryType": "npx",
+              "identifier": "@playwright/mcp@latest",
+              "version": "latest",
+              "transport": {
+                "type": "stdio"
+              }
+            }
+          ]
+        },
+        "_meta": {
+          "io.modelcontextprotocol.registry/official": {
+            "status": "active",
+            "publishedAt": "2026-01-17T00:00:00.000000Z",
+            "updatedAt": "2026-01-17T00:00:00.000000Z",
+            "isLatest": true
+          }
+        }
+      },
+      {
+        "server": {
+          "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+          "name": "com.microsoft/nuget",
+          "description": "A Model Context Protocol (MCP) server for NuGet.",
+          "version": "1.1.29",
+          "packages": [
+            {
+              "registryType": "nuget",
+              "registryBaseUrl": "https://api.nuget.org/v3/index.json",
+              "identifier": "NuGet.Mcp.Server",
+              "version": "1.1.29",
+              "transport": {
+                "type": "stdio"
+              }
+            }
+          ]
+        },
+        "_meta": {
+          "io.modelcontextprotocol.registry/official": {
+            "status": "active",
+            "publishedAt": "2026-01-23T22:34:10.229563Z",
+            "updatedAt": "2026-01-23T22:34:10.229563Z",
+            "isLatest": true
+          }
+        }
+      },
+      {
+        "server": {
+          "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+          "name": "com.microsoft/markitdown",
+          "description": "MarkItDown MCP server: convert documents (PDF, Office, images, HTML, etc.) to Markdown for LLM workflows.",
+          "title": "MarkItDown MCP Server",
+          "repository": {
+            "url": "https://github.com/microsoft/markitdown",
+            "source": "github",
+            "subfolder": "packages/markitdown-mcp"
+          },
+          "version": "0.0.1a4",
+          "websiteUrl": "https://github.com/microsoft/markitdown",
+          "packages": [
+            {
+              "registryType": "pypi",
+              "registryBaseUrl": "https://pypi.org",
+              "identifier": "markitdown-mcp",
+              "version": "0.0.1a4",
+              "transport": {
+                "type": "stdio"
+              }
+            }
+          ]
+        },
+        "_meta": {
+          "io.modelcontextprotocol.registry/official": {
+            "status": "active",
+            "publishedAt": "2026-01-19T00:00:00.000000Z",
+            "updatedAt": "2026-01-19T00:00:00.000000Z",
+            "isLatest": true
+          },
+          "io.modelcontextprotocol.registry/publisher-provided": {
+            "documentation": "https://pypi.org/project/markitdown-mcp/",
+            "keywords": [
+              "markdown",
+              "documents",
+              "conversion",
+              "pypi",
+              "python",
+              "stdio",
+              "http"
+            ]
+          }
+        }
+      },
+      {
+        "server": {
+          "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+          "name": "local/developer-mcp-template",
+          "description": "Developer template entry for running your own local MCP server (STDIO or localhost HTTP). Edit the command/args or URL to match your project.",
+          "title": "Local MCP Dev (Template)",
+          "version": "0.0.0"
+        },
+        "_meta": {
+          "io.modelcontextprotocol.registry/publisher-provided": {
+            "note": "This is a template. It will fail unless you run a local MCP server that matches the chosen transport (STDIO or HTTP) and endpoint.",
+            "examples": [
+              {
+                "name": "STDIO (Node.js example)",
+                "description": "Use STDIO for local development; point to your built entrypoint.",
+                "config": "{\n  \"mcpServers\": {\n    \"my-local-mcp\": {\n      \"command\": \"node\",\n      \"args\": [\n        \"${workspaceFolder}/dist/index.js\"\n      ]\n    }\n  }\n}"
+              },
+              {
+                "name": "STDIO (Python example)",
+                "description": "Point to your module/entry script.",
+                "config": "{\n  \"mcpServers\": {\n    \"my-local-mcp\": {\n      \"command\": \"python\",\n      \"args\": [\n        \"-m\",\n        \"my_mcp_server\"\n      ]\n    }\n  }\n}"
+              },
+              {
+                "name": "Local port (HTTP)",
+                "description": "If your server runs as HTTP, connect by URL.",
+                "config": "{\n  \"mcpServers\": {\n    \"my-local-mcp\": {\n      \"type\": \"http\",\n      \"url\": \"http://127.0.0.1:3000/mcp\"\n    }\n  }\n}"
+              }
+            ]
+          }
         }
       }
+    ],
+    "metadata": {
+      "count": 7
     }
-  ],
-  "metadata": {
-    "count": 4
   }
-}
